@@ -1,0 +1,6 @@
+{
+  "commands": {
+    "say hello": "echo hello world"
+  },
+  "cwd": "${repo_root}"
+}

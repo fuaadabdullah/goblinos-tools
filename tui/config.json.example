@@ -1,0 +1,8 @@
+{
+  "commands": {
+    "goblin queue status": "pnpm -C GoblinOS huntress-guild smoke",
+    "goblin doctor": "bash tools/validate_guild_ownership.sh",
+    "goblin kill-zombies": "bash tools/scripts/kill-port.sh 8000 || true"
+  },
+  "cwd": "${repo_root}"
+}

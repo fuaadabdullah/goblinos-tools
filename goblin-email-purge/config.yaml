@@ -1,0 +1,28 @@
+# Example config for goblin-email-purge
+# Fill values and rename to config.yaml
+
+imap:
+  host: imap.gmail.com
+  port: 993
+  username: fuaadabdullah@gmail.com
+  # Use app password or OAuth for Gmail. App passwords are easier for IMAP.
+  password_env_var: GMAIL_APP_PW
+  mailbox: INBOX
+  search_since_days: 365
+
+providers:
+  google:
+    oauth_client_id: your-client-id
+    oauth_client_secret: your-client-secret
+    saved_credentials_path: ./google_credentials.json # optional
+    revoke_access_token_env: GMAIL_ACCESS_TOKEN
+  facebook:
+    user_access_token_env: FB_ACCESS_TOKEN
+
+# Dry run mode by default; set to false to allow destructive actions
+options:
+  dry_run: false
+  verbose: false
+
+output:
+  reports_dir: ./reports
