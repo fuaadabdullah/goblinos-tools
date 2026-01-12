@@ -1,0 +1,11 @@
+# DuckDNS Configuration Template
+# Copy this file to .duckdns.conf and fill in your values
+# DO NOT commit .duckdns.conf to git - it contains your DuckDNS token
+
+# Your DuckDNS subdomain (without .duckdns.org)
+# Example: DUCKDNS_DOMAIN="goblinos-assistant"
+DUCKDNS_DOMAIN=""
+
+# Your DuckDNS token from https://www.duckdns.org
+# Example: DUCKDNS_TOKEN="12345678-1234-1234-1234-123456789012"
+DUCKDNS_TOKEN=""

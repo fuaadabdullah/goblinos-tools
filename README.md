@@ -13,9 +13,10 @@ Cross-repository scripts, generators, and utilities. Ownership per guild/goblin 
 
 - `lint_all.sh` - Run linters across all projects
 - `smoke.sh` - Health check for all services
+- `duckdns_setup.sh` - Configure DuckDNS dynamic DNS for Goblin Assistant (see [DUCKDNS_SETUP.md](DUCKDNS_SETUP.md))
 - `forge-new/` - Scaffolding tool for new packages
 - `templates/` - Reusable templates
- - `vscode_cleanup.sh` - Helper to inspect/archive/remove local VS Code workspace/global storage and extensions (opt-in, conservative)
+- `vscode_cleanup.sh` - Helper to inspect/archive/remove local VS Code workspace/global storage and extensions (opt-in, conservative)
 
 ## Usage
 
