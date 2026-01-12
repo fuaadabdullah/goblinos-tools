@@ -28,6 +28,7 @@ All guilds report to **Overmind**. Guild masters are the first line of escalatio
 | `tools/api_keys_check.sh` | Ensure `.env.example` + docs list required secrets | Keepers | Sentenial Ledgerwarden |
 | `tools/security_check.sh` | Verify Trivy/Cosign/SOPS tooling & scan Dockerfiles | Keepers | Sentenial Ledgerwarden |
 | `tools/secrets_manage.sh` | Smithy secret handling playbook | Keepers | Sentenial Ledgerwarden |
+| `tools/duckdns_setup.sh <command>` | Configure and manage DuckDNS dynamic DNS for public access | Crafters | Vanta Lumin |
 | `tools/disk_consolidation.sh` | Backup + disk resize checklist | Keepers | Sentenial Ledgerwarden |
 | `tools/space_saver.sh` | Archive heavy caches / venvs to external storage | Keepers | Sentenial Ledgerwarden |
 | `tools/system_clean.sh` | System-level cache purge with archival safety | Keepers | Sentenial Ledgerwarden |
@@ -56,6 +57,13 @@ Environment
   - `backend/scripts/config_backend.sh` — edit & validate ForgeTM backend configuration
   - `backend/scripts/deploy_backend.sh [local|docker]` — provision app, migrations, Docker workflow refresh
   - `backend/scripts/maintain_backend.sh <db_backup|db_migrate|cleanup_cache|...>` — lifecycle/backup utilities
+- **Public Access (DuckDNS)**:
+  - `tools/duckdns_setup.sh setup` — configure DuckDNS subdomain for public backend access
+  - `tools/duckdns_setup.sh update` — manually update IP address
+  - `tools/duckdns_setup.sh status` — check domain status and current IP
+  - `tools/duckdns_setup.sh launchd` — install auto-update service (macOS)
+  - `tools/duckdns_setup.sh cron` — install auto-update via cron (Linux/macOS)
+  - See `DUCKDNS_SETUP.md` for complete setup guide
 
 ## Huntress Guild – Magnolia Nightbloom
 
