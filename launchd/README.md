@@ -67,13 +67,13 @@ Want to give your Goblin Assistant a public domain name? See **[DUCKDNS_SETUP.md
 - Port forwarding configuration
 - SSL/TLS setup for HTTPS
 
-Quick start:
+Quick start (run from repository root):
 ```bash
 # Run the DuckDNS setup wizard
-./tools/duckdns_setup.sh setup
+./duckdns_setup.sh setup
 
 # Install auto-updates (macOS)
-./tools/duckdns_setup.sh launchd
+./duckdns_setup.sh launchd
 ```
 
 **Note:** To accept external connections, change `--host 127.0.0.1` to `--host 0.0.0.0` in the plist file.

@@ -82,8 +82,8 @@ setup_wizard() {
     
     log_info "Configuration complete!"
     echo ""
-    echo "Your Goblin Assistant will be accessible at: https://${DUCKDNS_DOMAIN}.duckdns.org"
-    echo "(Note: You'll need to set up port forwarding and SSL separately)"
+    echo "Your Goblin Assistant will be accessible at: http://${DUCKDNS_DOMAIN}.duckdns.org:8000"
+    echo "(Note: You'll need to set up port forwarding first. For HTTPS, see SSL/TLS setup in DUCKDNS_SETUP.md)"
 }
 
 # Update DuckDNS IP
@@ -96,11 +96,17 @@ update_ip() {
     log_info "Updating DuckDNS IP for ${DUCKDNS_DOMAIN}.duckdns.org"
     
     # Update DuckDNS with current public IP
-    RESPONSE=$(curl -s "https://www.duckdns.org/update?domains=${DUCKDNS_DOMAIN}&token=${DUCKDNS_TOKEN}&ip=")
+    RESPONSE=$(curl -s "https://www.duckdns.org/update?domains=${DUCKDNS_DOMAIN}&token=${DUCKDNS_TOKEN}&ip=" 2>/dev/null)
+    
+    if [[ -z "$RESPONSE" ]]; then
+        log_error "Failed to connect to DuckDNS. Check your internet connection."
+        echo "$(date): ERROR - Network failure" >> "${SCRIPT_DIR}/.duckdns.log"
+        exit 1
+    fi
     
     if [[ "$RESPONSE" == "OK" ]]; then
         # Get current public IP for logging
-        PUBLIC_IP=$(curl -s https://api.ipify.org)
+        PUBLIC_IP=$(curl -s https://api.ipify.org 2>/dev/null || echo "unknown")
         log_success "DuckDNS updated successfully!"
         log_info "Domain: ${DUCKDNS_DOMAIN}.duckdns.org"
         log_info "Public IP: ${PUBLIC_IP}"
@@ -125,8 +131,12 @@ check_status() {
     
     log_info "Checking DuckDNS status..."
     
-    PUBLIC_IP=$(curl -s https://api.ipify.org)
-    DOMAIN_IP=$(dig +short "${DUCKDNS_DOMAIN}.duckdns.org" @8.8.8.8 | tail -n1)
+    PUBLIC_IP=$(curl -s https://api.ipify.org 2>/dev/null || echo "unknown")
+    DOMAIN_IP=$(dig +short "${DUCKDNS_DOMAIN}.duckdns.org" @8.8.8.8 2>/dev/null | tail -n1)
+    
+    if [[ -z "$DOMAIN_IP" ]]; then
+        DOMAIN_IP="not found"
+    fi
     
     echo ""
     echo "Domain: ${DUCKDNS_DOMAIN}.duckdns.org"

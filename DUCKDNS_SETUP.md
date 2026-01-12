@@ -36,7 +36,6 @@ DuckDNS is a free dynamic DNS service that provides you with a subdomain (e.g., 
 ### 2. Run the Setup Wizard
 
 ```bash
-cd tools
 ./duckdns_setup.sh setup
 ```
 
@@ -242,8 +241,7 @@ Here's a complete example of setting up DuckDNS for your Goblin Assistant:
 # 1. Go to duckdns.org and create subdomain "goblinos-assistant"
 # 2. Copy your token
 
-# 3. Run setup
-cd tools
+# 3. Run setup (from repository root)
 ./duckdns_setup.sh setup
 # Enter subdomain: goblinos-assistant
 # Enter token: <your-token>
