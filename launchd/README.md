@@ -57,3 +57,23 @@ Notes and caveats
 - New macOS versions may prefer `launchctl bootstrap` instead of `load`/`unload`. The install script uses `load`/`unload` for compatibility; if you run into issues, replace with `launchctl bootstrap gui/$UID \"$PLIST_DEST\"` and `launchctl bootout gui/$UID \"$PLIST_DEST\"`.
 - `launchd` runs services in a minimal environment. Explicitly source your venv and use absolute paths (as the plist currently does).
 - Do not commit secrets into the plist. Use environment files or system-level secrets as needed; `launchd` will not read `.env` files for you unless you source them in the command.
+
+## Public Access with DuckDNS
+
+Want to give your Goblin Assistant a public domain name? See **[DUCKDNS_SETUP.md](../DUCKDNS_SETUP.md)** for a complete guide on:
+
+- Setting up a free subdomain like `goblinos-assistant.duckdns.org`
+- Automatic IP address updates
+- Port forwarding configuration
+- SSL/TLS setup for HTTPS
+
+Quick start (run from repository root):
+```bash
+# Run the DuckDNS setup wizard
+./duckdns_setup.sh setup
+
+# Install auto-updates (macOS)
+./duckdns_setup.sh launchd
+```
+
+**Note:** To accept external connections, change `--host 127.0.0.1` to `--host 0.0.0.0` in the plist file.
